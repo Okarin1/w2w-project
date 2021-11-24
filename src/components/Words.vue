@@ -2,15 +2,20 @@
   <div id="words">
     <h1 style="margin-top: 80px">英文花体转换器</h1>
     <div class="text-area">
+
       <div class="first-textarea">
         <textarea  v-model="words" placeholder="请输入文本"></textarea>
+        <button v-show="words" class="gg-close-o" @click="purgeText()" ></button>
       </div>
+
       <div class="second-textarea">
-        <textarea  id="preId" disabled="true" ref="second">{{showWords}}</textarea>
+        <textarea disabled="true" ref="second" v-model="showWords"></textarea>
         <button class="gg-copy" @click="copyText()" ></button>
       </div>
-      <div class="foo"><h2>Power by Okarin</h2></div>
+
     </div>
+
+     <div class="foo"><h3>Power by Okarin</h3></div>
   </div>
 </template>
 
@@ -33,8 +38,8 @@ export default {
   },
   methods:{
     copyText(){
-      let content = this.$refs.second.innerHTML
-      // console.log(content)
+      let content = this.$refs.second.value
+      console.log(content)
       if (content) {
         const el = document.createElement('textarea');  //创建一个textarea
         el.value = content;                //textarea的内容
@@ -46,12 +51,15 @@ export default {
         document.execCommand('copy') //拷贝当前选中内容到剪贴板
         alert("复制成功")
       }
+    },
+    purgeText(){
+      this.words=''
     }
   },
   watch:{
     words(){
-        if(this.words === 'EL PSY CONGROO'){
-          setTimeout("alert('EL PSY CONGROO')", 1000 )
+        if(this.words === 'EL PSY CONGROO' ||this.words === 'el psy congroo'){
+          setTimeout("alert('一切都是命运石之门的选择')", 1000 )
         }
     }
   }
@@ -70,8 +78,8 @@ export default {
   align-content: center;
   margin: 0 40px 0 40px;
 }
+
 .text-area textarea{
-  display: flex;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   padding: 10px;
   font-size: 24px;
@@ -84,15 +92,53 @@ export default {
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.06);
   border-radius: 5px;
 }
-.second-textarea{
+.first-textarea{
   display: flex;
   flex-direction: row-reverse;
 }
+.second-textarea{
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+}
+
+
+ .gg-close-o {
+  margin-right: 20px;
+  margin-top: 40px;
+ box-sizing: border-box;
+ position: absolute;
+ display: block;
+ transform: scale(var(--ggs,1));
+ width: 22px;
+ height: 22px;
+ border: 2px solid;
+ border-radius: 40px
+}
+
+.gg-close-o::after,
+.gg-close-o::before {
+ content: "";
+ display: block;
+ box-sizing: border-box;
+ position: absolute;
+ width: 12px;
+ height: 2px;
+ background: currentColor;
+ transform: rotate(45deg);
+ border-radius: 5px;
+ top: 8px;
+ left: 3px
+}
+
+.gg-close-o::after {
+ transform: rotate(-45deg)
+} 
 
 .gg-copy {
-  position: fixed;
+  position: absolute;
   align-self: flex-end;
-  margin-right: 30px;
+  margin-right: 20px;
   margin-bottom: 20px;
   box-sizing: border-box;
   display: block;
@@ -156,9 +202,7 @@ export default {
   }
 }
 .foo{
-  position: fixed;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  position: relative;
+  margin-top: 60px;
 }
 </style>
