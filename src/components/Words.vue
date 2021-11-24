@@ -109,7 +109,6 @@ export default {
  box-sizing: border-box;
  position: absolute;
  display: block;
- transform: scale(var(--ggs,1));
  width: 22px;
  height: 22px;
  border: 2px solid;
