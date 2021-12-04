@@ -1,9 +1,11 @@
 <template>
   <div id="words">
-    <h1 style="margin-top: 80px">英文花体转换器</h1>
+    <h1 style="margin-top: 6vh" v-cloak>{{showTitle}}英语转换器</h1>
+
     <div class="text-area">
 
       <div class="first-textarea">
+        <tab-control class="tab-control" :titles="titles" @tabClick="tabClick"/>
         <textarea  v-model="words" placeholder="请输入文本"></textarea>
         <button v-show="words" class="gg-close-o" @click="purgeText()" ></button>
       </div>
@@ -15,33 +17,43 @@
 
     </div>
 
-     <div class="foo"><h3>Power by Okarin</h3></div>
+     <div class="foo"><h4>酷安@送报少年</h4></div>
   </div>
 </template>
 
 <script>
 
+
 import Toast from "@/common/toast"
 import {toWords} from "@/common/w2w";
+import TabControl from '@/components/TabControl';
 export default {
+  components: { TabControl },
   name: 'Words',
   props: {
     msg: String
   },
+  alphabet:0,
   data(){
     return{
       words: "",
+      text:'',
+      titles:['花体','迷你'],
+      alphabet:0
   }
   },
   computed:{
     showWords(){
-     return toWords(this.words)
+     return toWords(this.words,this.alphabet)
+    },
+    showTitle(){
+      return this.titles[this.alphabet]
     }
   },
   methods:{
     copyText(){
       let content = this.$refs.second.value
-      console.log(content)
+      // console.log(content)
       if (content) {
         const el = document.createElement('textarea');  //创建一个textarea
         el.value = content;                //textarea的内容
@@ -56,12 +68,15 @@ export default {
     },
     purgeText(){
       this.words=''
+    },
+    tabClick(index){
+     this.alphabet = index
     }
   },
   watch:{
     words(){
         if(this.words === 'EL PSY CONGROO' ||this.words === 'el psy congroo'){
-          setTimeout("alert('一切都是命运石之门的选择')", 1000 )
+          setTimeout(()=>Toast.success('一切都是命运石之门的选择!',5000),1000)
         }
     }
   }
@@ -71,14 +86,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
+[v-cloak]{
+    display: none;
+}
+
+.tab-control{
+  position: relative;
+  margin: 0 0 0 5px;
+}
 
 .text-area{
   display: flex;
   flex-flow: row wrap;
   list-style: none;
+  align-items:flex-end;
   justify-content: space-around;
   align-content: center;
-  margin: 0 40px 0 40px;
+  margin: 0px 40px 0 40px;
 }
 
 .text-area textarea{
@@ -96,7 +120,7 @@ export default {
 }
 .first-textarea{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
 }
 .second-textarea{
   display: flex;
@@ -106,8 +130,9 @@ export default {
 
 
  .gg-close-o {
+   align-self: flex-end;
   margin-right: 15px;
-  margin-top: 40px;
+  margin-top: 55px;
  box-sizing: border-box;
  position: absolute;
  display: block;
@@ -115,7 +140,8 @@ export default {
  width: 22px;
  height: 22px;
  border: 2px solid;
- border-radius: 40px
+ border-radius: 40px;
+ cursor: pointer;
 }
 
 .gg-close-o::after,
@@ -147,7 +173,7 @@ export default {
   width: 14px;
   height: 18px;
   border: 2px solid;
-
+  cursor: pointer;
 }
 
 .gg-copy::after,
@@ -181,7 +207,7 @@ export default {
   top: 2px;
   box-shadow: 0 4px 0,0 8px 0
 }
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .text-area {
     flex-flow: column wrap;
     margin: 80px;
@@ -191,11 +217,11 @@ export default {
     width:70vw;
     height: 30vh;
   }
-}
+} */
 @media only screen and (max-width: 768px) {
   .text-area {
     flex-flow: column wrap;
-    margin: 10px;
+    margin: 30px 10px 10px 10px;
     justify-content: space-around;
   }
   .text-area textarea{
@@ -205,6 +231,6 @@ export default {
 }
 .foo{
   position: relative;
-  margin-top: 80px;
+  margin-top: 6vh;
 }
 </style>

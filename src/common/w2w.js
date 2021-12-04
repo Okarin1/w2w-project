@@ -1,166 +1,24 @@
-export function toWords(words) {
+const alphabet = [
+    ['𝓐', '𝓑', '𝓒', '𝓓', '𝓔', '𝓕', '𝓖', '𝓗', '𝓘', '𝓙', '𝓚', '𝓛', '𝓜', '𝓝', '𝓞', '𝓟', '𝓠', '𝓡', '𝓢', '𝓣', '𝓤', '𝓥', '𝓦', '𝓧', '𝓨', '𝓩',
+        '𝓪', '𝓫', '𝓬', '𝓭', '𝓮', '𝓯', '𝓰', '𝓱', '𝓲', '𝓳', '𝓴', '𝓵', '𝓶', '𝓷', '𝓸', '𝓹', '𝓺', '𝓻', '𝓼', '𝓽', '𝓾', '𝓿', '𝔀', '𝔁', '𝔂', '𝔃'],
+    ['ᴀ', 'ʙ', 'ᴄ', 'ᴅ', 'ᴇ', 'ғ', 'ɢ', 'ʜ', 'ɪ', 'ᴊ', 'ᴋ', 'ʟ', 'ᴍ', 'ɴ', 'ᴏ', 'ᴘ', 'ϙ', 'ʀ', 's', 'ᴛ', 'ᴜ', 'ᴠ', 'ᴡ', 'x', 'ʏ', 'ᴢ',
+        'ᵃ', 'ᵇ', 'ᶜ', 'ᵈ', 'ᵉ', 'ᶠ', 'ᵍ', 'ʰ', 'ⁱ', 'ʲ', 'ᵏ', 'ˡ', 'ᵐ', 'ⁿ', 'ᵒ', 'ᵖ', 'ᵠ', 'ʳ', 'ˢ', 'ᵗ', 'ᵘ', 'ᵛ', 'ʷ', 'ˣ', 'ʸ', 'ᶻ']
+]
+
+export function toWords(words,indexAlphabet = 0){
     let strArray = []
-    for (let s of words){ 
-        switch (s){
-            case 'a':
-                strArray.push('𝓪');
-                break;
-            case 'b':
-                strArray.push('𝓫');
-                break;
-            case 'c':
-                strArray.push('𝓬');
-                break;
-            case 'd':
-                strArray.push('𝓭');
-                break;
-            case 'e':
-                strArray.push('𝓮');
-                break;
-            case 'f':
-                strArray.push('𝓯');
-                break;
-            case 'g':
-                strArray.push('𝓰');
-                break;
-            case 'h':
-                strArray.push('𝓱');
-                break;
-            case 'i':
-                strArray.push('𝓲');
-                break;
-            case 'j':
-                strArray.push('𝓳');
-                break;
-            case 'k':
-                strArray.push('𝓴');
-                break;
-            case 'l':
-                strArray.push('𝓵');
-                break;
-            case 'm':
-                strArray.push('𝓶');
-                break;
-            case 'n':
-                strArray.push('𝓷');
-                break;
-            case 'o':
-                strArray.push('𝓸');
-                break;
-            case 'p':
-                strArray.push('𝓹');
-                break;
-            case 'q':
-                strArray.push('𝓺');
-                break;
-            case 'r':
-                strArray.push('𝓻');
-                break;
-            case 's':
-                strArray.push('𝓼');
-                break;
-            case 't':
-                strArray.push('𝓽');
-                break;
-            case 'u':
-                strArray.push('𝓾');
-                break;
-            case 'v':
-                strArray.push('𝓿');
-                break;
-            case 'w':
-                strArray.push('𝔀');
-                break;
-            case 'x':
-                strArray.push('𝔁');
-                break;
-            case 'y':
-                strArray.push('𝔂');
-                break;
-            case 'z':
-                strArray.push('𝔃');
-                break;
-            case 'A':
-                strArray.push('𝓐');
-                break;
-            case 'B':
-                strArray.push('𝓑');
-                break;
-            case 'C':
-                strArray.push('𝓒');
-                break;
-            case 'D':
-                strArray.push('𝓓');
-                break;
-            case 'E':
-                strArray.push('𝓔');
-                break;
-            case 'F':
-                strArray.push('𝓕');
-                break;
-            case 'G':
-                strArray.push('𝓖');
-                break;
-            case 'H':
-                strArray.push('𝓗');
-                break;
-            case 'I':
-                strArray.push('𝓘');
-                break;
-            case 'J':
-                strArray.push('𝓙');
-                break;
-            case 'K':
-                strArray.push('𝓚');
-                break;
-            case 'L':
-                strArray.push('𝓛');
-                break;
-            case 'M':
-                strArray.push('𝓜');
-                break;
-            case 'N':
-                strArray.push('𝓝');
-                break;
-            case 'O':
-                strArray.push('𝓞');
-                break;
-            case 'P':
-                strArray.push('𝓟');
-                break;
-            case 'Q':
-                strArray.push('𝓠');
-                break;
-            case 'R':
-                strArray.push('𝓡');
-                break;
-            case 'S':
-                strArray.push('𝓢');
-                break;
-            case 'T':
-                strArray.push('𝓣');
-                break;
-            case 'U':
-                strArray.push('𝓤');
-                break;
-            case 'V':
-                strArray.push('𝓥');
-                break;
-            case 'W':
-                strArray.push('𝓦');
-                break;
-            case 'X':
-                strArray.push('𝓧');
-                break;
-            case 'Y':
-                strArray.push('𝓨');
-                break;
-            case 'Z':
-                strArray.push('𝓩');
-                break;
-            default:
-                strArray.push(s)
+    for (let s of words){
+        if(/[A-Z]/.test(s)){
+            strArray.push(alphabet[indexAlphabet][s.charCodeAt(0)-65])
+        }else if(/[a-z]/.test(s)){
+            strArray.push(alphabet[indexAlphabet][s.charCodeAt(0)-71])
+        }else{
+            strArray.push(s)
         }
     }
-    return strArray.join('')
+    const finalWords = strArray.join('')
+    return finalWords
 }
+
+// console.log(toWords('Hello',0))
+

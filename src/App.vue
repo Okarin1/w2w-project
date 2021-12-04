@@ -21,14 +21,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 .cpt-toast{
   position: absolute;
   right: 0;
   left: 0;
-  bottom: 40px;;
+  bottom: 8vh;
   text-align: center;
 }
 .success{
