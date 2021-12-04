@@ -1,6 +1,6 @@
 export function toWords(words) {
     let strArray = []
-    for (let s of words){
+    for (let s of words){ 
         switch (s){
             case 'a':
                 strArray.push('𝓪');

@@ -20,6 +20,8 @@
 </template>
 
 <script>
+
+import Toast from "@/common/toast"
 import {toWords} from "@/common/w2w";
 export default {
   name: 'Words',
@@ -49,7 +51,7 @@ export default {
         document.body.appendChild(el);
         el.select();
         document.execCommand('copy') //拷贝当前选中内容到剪贴板
-        alert("复制成功")
+        Toast.success('文本已复制')
       }
     },
     purgeText(){
@@ -82,7 +84,7 @@ export default {
 .text-area textarea{
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   padding: 10px;
-  font-size: 24px;
+  font-size: 22px;
   resize: none;
   flex-shrink: 0;
   margin-top: 20px;
@@ -104,11 +106,12 @@ export default {
 
 
  .gg-close-o {
-  margin-right: 20px;
+  margin-right: 15px;
   margin-top: 40px;
  box-sizing: border-box;
  position: absolute;
  display: block;
+ transform: scale(var(--ggs,1));
  width: 22px;
  height: 22px;
  border: 2px solid;
@@ -202,6 +205,6 @@ export default {
 }
 .foo{
   position: relative;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 </style>
