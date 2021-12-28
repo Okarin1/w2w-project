@@ -1,23 +1,16 @@
 <template>
   <div id="words">
-    <h1 style="margin-top: 6vh" v-cloak>{{showTitle}}英语转换器</h1>
-
     <div class="text-area">
-
       <div class="first-textarea">
-        <tab-control class="tab-control" :titles="titles" @tabClick="tabClick"/>
         <textarea  v-model="words" placeholder="请输入文本"></textarea>
         <button v-show="words" class="gg-close-o" @click="purgeText()" ></button>
       </div>
-
-      <div class="second-textarea">
-        <textarea disabled="true" ref="second" v-model="showWords"></textarea>
-        <button class="gg-copy" @click="copyText()" ></button>
+      <div class="second-textarea" v-show="words"  v-for="index in alphabet" :key="index">
+          <textarea disabled="true"  v-text="showWords(index)"></textarea>
+          <button class="gg-copy" @click="copyText($event)"></button>
       </div>
 
     </div>
-
-     <div class="foo"><h4>酷安@送报少年</h4></div>
   </div>
 </template>
 
@@ -26,34 +19,28 @@
 
 import Toast from "@/common/toast"
 import {toWords} from "@/common/w2w";
-import TabControl from '@/components/TabControl';
+
 export default {
-  components: { TabControl },
+  components: {} ,
   name: 'Words',
-  props: {
-    msg: String
-  },
   alphabet:0,
   data(){
     return{
       words: "",
-      text:'',
-      titles:['花体','迷你'],
-      alphabet:0
+      alphabet:[0,1,2,3,4,5,6,7,8,9,10]
   }
   },
   computed:{
     showWords(){
-     return toWords(this.words,this.alphabet)
-    },
-    showTitle(){
-      return this.titles[this.alphabet]
+      return function(index){
+        return toWords(this.words,index)
+      }
     }
   },
   methods:{
-    copyText(){
-      let content = this.$refs.second.value
-      // console.log(content)
+    copyText(event){
+      let content = event.target.previousElementSibling.innerHTML
+      console.log(content)
       if (content) {
         const el = document.createElement('textarea');  //创建一个textarea
         el.value = content;                //textarea的内容
@@ -68,12 +55,9 @@ export default {
     },
     purgeText(){
       this.words=''
-    },
-    tabClick(index){
-     this.alphabet = index
     }
   },
-  watch:{
+   watch:{
     words(){
         if(this.words === 'EL PSY CONGROO' ||this.words === 'el psy congroo'){
           setTimeout(()=>Toast.success('一切都是命运石之门的选择!',5000),1000)
@@ -86,34 +70,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-[v-cloak]{
-    display: none;
-}
 
-.tab-control{
-  position: relative;
-  margin: 0 0 0 5px;
-}
 
 .text-area{
+  margin: 0.5rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   list-style: none;
-  align-items:flex-end;
-  justify-content: space-around;
-  align-content: center;
-  margin: 0px 40px 0 40px;
 }
 
 .text-area textarea{
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  padding: 10px;
-  font-size: 22px;
-  resize: none;
-  flex-shrink: 0;
   margin-top: 20px;
-  width: 40vw;
-  height: 50vh;
   color: #1f2f3e;
   box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.06);
   border-radius: 5px;
@@ -129,20 +96,20 @@ export default {
 }
 
 
- .gg-close-o {
-   align-self: flex-end;
+.gg-close-o {
+  align-self: flex-end;
   margin-right: 15px;
-  margin-top: 55px;
- box-sizing: border-box;
- position: absolute;
- display: block;
- transform: scale(var(--ggs,1));
- width: 22px;
- height: 22px;
- border: 2px solid;
- border-radius: 40px;
- cursor: pointer;
-}
+  margin-top: 35px;
+  box-sizing: border-box;
+  position: absolute;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 40px;
+  cursor: pointer;
+  }
 
 .gg-close-o::after,
 .gg-close-o::before {
@@ -166,8 +133,9 @@ export default {
 .gg-copy {
   position: absolute;
   align-self: flex-end;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  z-index: 99;
+    margin-right: 20px;
+    margin-bottom: 20px;
   box-sizing: border-box;
   display: block;
   width: 14px;
@@ -218,7 +186,7 @@ export default {
     height: 30vh;
   }
 } */
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   .text-area {
     flex-flow: column wrap;
     margin: 30px 10px 10px 10px;
@@ -226,9 +194,9 @@ export default {
   }
   .text-area textarea{
     width:70vw;
-    height: 30vh;
+    height: 5vh;
   }
-}
+} */
 .foo{
   position: relative;
   margin-top: 6vh;

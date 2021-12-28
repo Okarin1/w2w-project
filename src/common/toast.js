@@ -3,7 +3,6 @@ let count = 0
  
 function Toast (props) {
     if (!ToastWrap) {
-        // 单利模式
         ToastWrap = document.createElement('div')
         ToastWrap.setAttribute('class', 'cpt-toast-wrap')
         document.body.append(ToastWrap)

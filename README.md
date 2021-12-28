@@ -1,19 +1,23 @@
-# w2w-project
 
-## Project setup
+# 英文花体转换器
+
+一个英文和数字文本的花体转换工具
+
+## 独立网页版本
+https://w2w.okarin.cn/
+
+
+## 部署
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 打包
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
