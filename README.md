@@ -9,15 +9,15 @@ https://w2w.okarin.cn/
 
 ## 部署
 ```
-npm install
+yarn install
 ```
 
 ### 运行
 ```
-npm run serve
+yarn run serve
 ```
 
 ### 打包
 ```
-npm run build
+yarn run build
 ```

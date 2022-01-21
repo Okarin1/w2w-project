@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <words />
+
     <div class="content-box">
+          <words />
       <h2>说明</h2>
       <blockquote>
         <p>某年某月某日</p>
@@ -46,6 +47,10 @@
 
       <h2>鸣谢</h2>
       <p><a href="https://weibo.com/reiove" target="_blank">@卜卜口</a></p>
+
+      <div class="footer">
+        MIT Licensed | Copyright © 2022-present <a href="https://weibo.com/u/6331216566" target="_blank">@Okarin</a>
+      </div>
     </div>
   </div>
 </template>
@@ -61,9 +66,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
 @import "assets/css/base.css";
-@import "assets/css/word.css";
+@import "assets/css/okarin.less";
 
 .cpt-toast {
   position: fixed;
@@ -80,3 +85,4 @@ export default {
   background-color: rgba(14, 13, 13, 0.6);
 }
 </style>
+
