@@ -33,9 +33,11 @@
         我还埋藏了一个小彩蛋，如果你也是石头门的粉丝的话。对了这玩意儿也有微信小程序版本，搜索《花体转换器》
       </p>
 
-      <h2>支付宝打赏</h2>
+      <h2>打赏</h2>
       <p>
-        <img width="200" src="@/assets/alipay.jpg" alt="支付宝打赏" />
+       <a href="https://donate.okarin.cn/" target="_blank"
+          >点击这里请我喝瓶美汁源吧！</a
+        >
       </p>
 
       <h2>仓库地址</h2>
