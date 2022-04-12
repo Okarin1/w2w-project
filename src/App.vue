@@ -51,12 +51,13 @@
       <p><a href="https://weibo.com/reiove" target="_blank">@卜卜口</a></p>
 
       <div class="footer">
-        MIT Licensed | Copyright © 2022-present <a href="https://weibo.com/u/6331216566" target="_blank">@Okarin</a>
+      <span id="busuanzi_container_site_pv" style="display: inline;">Visited: <span id="busuanzi_value_site_pv"></span> times</span> | Copyright © 2022-present <a href="https://weibo.com/u/6331216566" target="_blank">@Okarin</a>
       </div>
     </div>
   </div>
 </template>
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script>
 import Words from "./components/Words.vue";
 
